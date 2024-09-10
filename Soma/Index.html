@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SOMA calculation</title>
+</head>
+<body>
+  <h1>SOMA calculation</h1>
+  <div id="result"></div>
+
+  <script>
+    let INDICE = 13;
+    let SOMA = 0;
+    let K = 0;
+
+    while (K < INDICE) {
+      K = K + 1;
+      SOMA = SOMA + K;
+    }
+
+    document.getElementById("result").innerHTML = `O valor da variável SOMA é ${SOMA}.`;
+  </script>
+</body>
+</html>

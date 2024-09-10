@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faturamento mensal por estado</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    table {
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Faturamento mensal por estado</h1>
+  <div id="result"></div>
+
+  <script>
+    // Define the data
+    const data = [
+      { estado: "SP", faturamento: 67836.43 },
+      { estado: "RJ", faturamento: 36678.66 },
+      { estado: "MG", faturamento: 29229.88 },
+      { estado: "ES", faturamento: 27165.48 },
+      { estado: "Outros", faturamento: 19849.53 }
+    ];
+
+    const totalRevenue = data.reduce((a, b) => a + b.faturamento, 0);
+
+    const percentages = data.map(item => ({
+      estado: item.estado,
+      percentual: ((item.faturamento / totalRevenue) * 100).toFixed(2)
+    }));
+
+    document.getElementById("result").innerHTML = `
+      <table>
+        <tr>
+          <th>Estado</th>
+          <th>Percentual de representação</th>
+        </tr>
+        ${percentages.map(item => `
+          <tr>
+            <td>${item.estado}</td>
+            <td>${item.percentual}%</td>
+          </tr>
+        `).join("")}
+      </table>
+    `;
+  </script>
+</body>
+</html>

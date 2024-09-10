@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Inverter string</title>
+</head>
+<body>
+  <h1>Inverter string</h1>
+  <input id="input" type="text" value="Digite um texto aqui" onfocus="this.value=''">
+  <button onclick="reverseString()">Inverter</button>
+  <div id="result"></div>
+
+  <script>
+    function reverseString() {
+      const input = document.getElementById("input").value;
+      const reversed = input.split("").reverse().join("");
+      document.getElementById("result").innerHTML = `O texto invertido é: ${reversed}`;
+    }
+  </script>
+</body>
+</html>

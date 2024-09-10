@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faturamento diário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Faturamento diário</h1>
+  <div id="result"></div>
+
+  <script>
+    fetch('faturamento.json')
+      .then(response => response.json())
+      .then(data => {
+    
+        const filteredData = data.filter(item => item.faturamento > 0);
+
+       
+        const minVal = Math.min(...filteredData.map(item => item.faturamento));
+        const maxVal = Math.max(...filteredData.map(item => item.faturamento));
+
+        const sum = filteredData.reduce((a, b) => a + b.faturamento, 0);
+        const avg = sum / filteredData.length;
+
+        const count = filteredData.filter(item => item.faturamento > avg).length;
+
+        document.getElementById("result").innerHTML = `
+          <p>O menor valor de faturamento é ${minVal}.</p>
+          <p>O maior valor de faturamento é ${maxVal}.</p>
+          <p>O número de dias no mês em que o valor de faturamento diário foi superior à média mensal é ${count}.</p>
+        `;
+      });
+  </script>
+</body>
+</html>
